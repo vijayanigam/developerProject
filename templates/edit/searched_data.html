@@ -1,0 +1,110 @@
+
+<html>
+<head>
+<title>Search result</title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div class="alert alert-danger">
+    <span><a href="{% url 'editinfo:data'%}"><button class="alert alert-success"><strong>go to developer list</strong></button></a></span>
+  <span> <strong style="font-size:30px; margin-left:30%">Search results</strong></span>
+<hr>
+     Technology: {{tech}}<br>
+    Domain: {{domain}}<br>
+    Location: {{loc}}
+  </div>
+
+
+<div class="container " align="center">
+  <div class="row border border-warning pt-3 alert alert-info" >
+    <div class="col-sm ">
+      <b>Name</b>
+    </div>
+    <div class="col-sm">
+      <b>Email</b>
+    </div>
+    <div class="col-sm ">
+      <b>Location</b>
+    </div>
+      <div class="col-sm ">
+      <b>score</b>
+    </div>
+
+      <div class="col-sm ">
+      <b>Domain</b>
+    </div>
+  </div>
+    {% for x in data %}
+    <div class="row border border-warning pt-3 alert"data-toggle="collapse" data-target="#demo{{x.id}}">
+      <div class="col-sm ">
+        {{x.name}}
+      </div>
+      <div class="col-sm ">
+        {{x.email}}
+      </div>
+        <div class="col-sm ">
+        {{x.location}}
+      </div>
+      <div class="col-sm ">
+        {{x.score}}
+
+      </div>
+        <div class="col-sm ">
+              {% for i in x.domain.all %}
+        {{i.name}}
+      <hr style="margin:0%">
+        {% endfor %}
+      </div>
+</div>
+    <div id="demo{{x.id}}" class="collapse row  pt-3 alert alert-success" style="padding-left:1%;">
+      <p>
+        <b>Technology:</b> <div class="col-sm ">
+         {% for i in x.technology.all %}
+        {{i.name}}<br>
+      <hr>
+        {% endfor %}
+
+      </div>
+      <b>Blogs:</b> <div class="col-sm ">
+         {% for i in x.blog.all %}
+        {{i.title}}<br>
+      <hr>
+        {% endfor %}
+
+      </div>
+
+      <b>Projects:</b> <div class="col-sm ">
+         {% for i in x.project.all %}
+        {{i.title}}<br>
+      <hr>
+        {% endfor %}
+
+      </div>
+      <b>Ques_Ans:</b> <div class="col-sm ">
+         {% for i in x.q_a.all %}
+        question: {{i.ques}}<br>
+        answer: {{i.ans}}<br>
+        <hr>
+        {% endfor %}
+
+      </div>
+      </p>
+
+
+  </div>
+ <br>
+
+     {% endfor %}
+
+<!--    {% for x in data.domain.all %}-->
+<!--    <h1>{{x.name}}</h1>-->
+<!--    {% endfor %}-->
+  <center><a href="{% url 'editinfo:search'%}"><button>search</button></a></center>
+</div>
+</body>
+</html>

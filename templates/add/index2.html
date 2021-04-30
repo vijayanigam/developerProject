@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+    {% if val == 'user_exist' %}
+    <div class="alert alert-danger">
+    <center><h3>user already exists....
+    <a href="{% url 'editinfo:edit' %}">click here to add data again</a></h3></center>
+    </div>
+ {% endif %}
+    {% if val == 'pagenotfound' %}
+    <div class="alert alert-info">
+    <center><h3>Page not found.....
+    <a href="{% url 'editinfo:edit' %}">click here to add data again</a></h3></center>
+    </div>
+    {% endif %}
+    {% if val == 'no_search' %}
+    <div class="alert alert-warning">
+    <center><h3>No results found....
+    <a href="{% url 'editinfo:search' %}">click here to search again</h3></center>
+    </div>
+    {% endif %}
+
+
+</body>
+</html>
