@@ -25,7 +25,7 @@ SECRET_KEY = '9nf8d9&!c!0t)_1=8(8lu*c=2^07v1ix655e@5m)2wfdj%&w(w'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
